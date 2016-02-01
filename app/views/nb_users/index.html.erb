@@ -1,0 +1,45 @@
+<h1 style="font-size: 3em; color: darkgreen; text-align: center; font-family: Courier;">Listing nb_users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Lastname</th>
+      <th>Firstname</th>
+      <th>Emailoptin</th>
+      <th>Updatedat</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @nb_users.each do |nb_user| %>
+      <tr>
+        <td><%= nb_user.email %></td>
+        <td><%= nb_user.lastname %></td>
+        <td><%= nb_user.firstname %></td>
+        <td><%= nb_user.emailoptin %></td>
+        <td><%= nb_user.updatedat %></td>
+        <td><%= link_to 'Show', nb_user %></td>
+        <td><%= link_to 'Edit', edit_nb_user_path(nb_user) %></td>
+        <td><%= link_to 'Destroy', nb_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<p><%= @result %></p>
+<br>
+
+
+<p>
+
+ <%=     response =  HTTParty.get("https://brianmcauley.nationbuilder.com/api/v1/people?__nonce=adb0731da1b0cf4f6f230c898f8e746b3142a1157bcf9dd9745388f3bbe6358b&limit=200&__proto__=&access_token=adb0731da1b0cf4f6f230c898f8e746b3142a1157bcf9dd9745388f3bbe6358b",
+ :headers => { 'Content-Type' => 'application/json', 'Accept' => 'application/json'}).parsed_response %>
+
+
+</p>
+
+
+<%= link_to 'New Nb user', new_nb_user_path %>
